@@ -7,9 +7,9 @@ import java.util.logging.Logger;
 
 import com.nuclyon.technicallycoded.inventoryrollback.InventoryRollbackPlus;
 import com.nuclyon.technicallycoded.inventoryrollback.nms.EnumNmsVersion;
+import me.nahu.scheduler.wrapper.FoliaWrappedJavaPlugin;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
-import org.bukkit.plugin.java.JavaPlugin;
 
 import me.danjono.inventoryrollback.UpdateChecker.UpdateResult;
 import me.danjono.inventoryrollback.commands.Commands;
@@ -22,7 +22,7 @@ import me.danjono.inventoryrollback.data.YAML;
 import me.danjono.inventoryrollback.listeners.ClickGUI;
 import me.danjono.inventoryrollback.listeners.EventLogs;
 
-public abstract class InventoryRollback extends JavaPlugin {
+public abstract class InventoryRollback extends FoliaWrappedJavaPlugin {
 
     private static final Logger logger = Logger.getLogger("Minecraft");
     private static InventoryRollback instance;
@@ -167,7 +167,7 @@ public abstract class InventoryRollback extends JavaPlugin {
     }
 
     public void checkUpdate() {
-        Bukkit.getScheduler().runTaskAsynchronously(InventoryRollback.getInstance(), () -> {
+        getScheduler().runTaskAsynchronously(() -> {
             logger.log(Level.INFO, MessageData.getPluginPrefix() + "Checking for updates...");
 
             final UpdateResult result = new UpdateChecker(getInstance(), 85811).getResult();

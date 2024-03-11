@@ -7,11 +7,11 @@ import me.danjono.inventoryrollback.data.LogType;
 import me.danjono.inventoryrollback.data.PlayerData;
 import me.danjono.inventoryrollback.gui.Buttons;
 import me.danjono.inventoryrollback.gui.InventoryName;
+import me.nahu.scheduler.wrapper.runnable.WrappedRunnable;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
-import org.bukkit.scheduler.BukkitRunnable;
 
 import java.util.UUID;
 import java.util.concurrent.ExecutionException;
@@ -79,7 +79,7 @@ public class MainInventoryBackupMenu {
 		//If the backup file is invalid it will return null, we want to catch it here
 		try {
     		// Add items, 5 per tick
-			new BukkitRunnable() {
+			new WrappedRunnable() {
 
 				int invPosition = 0;
 				int itemPos = 0;
@@ -104,7 +104,7 @@ public class MainInventoryBackupMenu {
 						itemPos++;
 					}
 				}
-			}.runTaskTimer(main, 0, 1);
+			}.runTaskTimerAtEntity(main, staff, 1, 1);
 		} catch (NullPointerException e) {
 		    staff.sendMessage(MessageData.getPluginPrefix() + MessageData.getErrorInventory());
 		    return;
@@ -115,42 +115,42 @@ public class MainInventoryBackupMenu {
 		
 		//Add armour
 		if (armour.length > 0) {
-			try {
+//			try {
 				for (int i = 0; i < armour.length; i++) {
 					// Place item safely
 					final int finalPos = position;
 					final int finalItem = i;
-					Future<Void> placeItemFuture = main.getServer().getScheduler().callSyncMethod(main,
+					main.getScheduler().runTaskAtEntity(staff,
 							() -> {
 								inventory.setItem(finalPos, armour[finalItem]);
-								return null;
+//								return null;
 							});
-					placeItemFuture.get();
+//					placeItemFuture.get();
 					position--;
 				}
-			} catch (ExecutionException | InterruptedException ex) {
-				ex.printStackTrace();
-			}
+//			} catch (ExecutionException | InterruptedException ex) {
+//				ex.printStackTrace();
+//			}
 		} else {
-			try {
+//			try {
 				for (int i = 36; i < mainInventory.length; i++) {
 					if (mainInventory[item] != null) {
 						// Place item safely
 						final int finalPos = position;
 						final int finalItem = item;
-						Future<Void> placeItemFuture = main.getServer().getScheduler().callSyncMethod(main,
+						main.getScheduler().runTaskAtEntity(staff,
 								() -> {
 									inventory.setItem(finalPos, mainInventory[finalItem]);
-									return null;
+//									return null;
 								});
-						placeItemFuture.get();
+//						placeItemFuture.get();
 						position--;
 					}
 					item++;
 				}
-			} catch (ExecutionException | InterruptedException ex) {
-				ex.printStackTrace();
-			}
+//			} catch (ExecutionException | InterruptedException ex) {
+//				ex.printStackTrace();
+//			}
 		}
 				
 		// Add restore all player inventory button

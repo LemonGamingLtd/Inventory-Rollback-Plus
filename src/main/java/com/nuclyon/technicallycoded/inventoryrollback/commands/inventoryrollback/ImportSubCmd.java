@@ -32,7 +32,7 @@ public class ImportSubCmd extends IRPCommand {
                 suggestConfirm.set(true);
 
                 // Reset suggestion availability after 10 seconds
-                this.main.getServer().getScheduler().runTaskLaterAsynchronously(this.main, () -> {
+                this.main.getScheduler().runTaskLaterAsynchronously(() -> {
                     suggestConfirm.set(false);
                 }, 10 * 20);
 
@@ -40,7 +40,7 @@ public class ImportSubCmd extends IRPCommand {
             }
 
             // Execute import
-            Bukkit.getScheduler().runTaskAsynchronously(main, BackupConversionUtil::convertOldBackupData);
+            this.main.getScheduler().runTaskAsynchronously(BackupConversionUtil::convertOldBackupData);
 
             // Reset suggestion to not visible
             suggestConfirm.set(false);
