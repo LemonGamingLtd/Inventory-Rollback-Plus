@@ -5,7 +5,7 @@
 
     <groupId>com.nuclyon.technicallycoded.inventoryrollback</groupId>
     <artifactId>InventoryRollbackPlus</artifactId>
-    <version>1.6.18</version>
+    <version>1.6.21</version>
     <packaging>jar</packaging>
     <name>InventoryRollbackPlus</name>
     <url>https://github.com/TechnicallyCoded/Inventory-Rollback-Plus/</url>
@@ -33,16 +33,12 @@
             <url>https://papermc.io/repo/repository/maven-public/</url>
         </repository>
         <repository>
-            <id>devmart-bukkit</id>
-            <url>https://nexuslite.gcnt.net/repos/bukkit/</url>
-        </repository>
-        <repository>
             <id>maven_central</id>
             <name>Maven Central</name>
             <url>https://repo.maven.apache.org/maven2/</url>
         </repository>
         <repository>
-            <id>jitpack.io</id>
+            <id>jitpack</id>
             <url>https://jitpack.io</url>
         </repository>
     </repositories>
@@ -99,6 +95,12 @@
             <scope>compile</scope>
         </dependency>
         <dependency>
+            <groupId>com.github.lightlibs</groupId>
+            <artifactId>BukkitVersion</artifactId>
+            <version>0.0.9</version>
+            <scope>compile</scope>
+        </dependency>
+        <dependency>
             <groupId>com.github.NahuLD.folia-scheduler-wrapper</groupId>
             <artifactId>folia-scheduler-wrapper</artifactId>
             <version>v0.0.3</version>
@@ -123,8 +125,8 @@
                 <artifactId>maven-compiler-plugin</artifactId>
                 <version>3.12.1</version>
                 <configuration>
-                    <source>17</source>
-                    <target>17</target>
+                    <source>21</source>
+                    <target>21</target>
                     <showWarnings>true</showWarnings>
                     <showDeprecation>true</showDeprecation>
                 </configuration>
@@ -169,6 +171,10 @@
                         <relocation>
                             <pattern>io.papermc.lib</pattern>
                             <shadedPattern>${project.groupId}.paperlib</shadedPattern>
+                        </relocation>
+                        <relocation>
+                            <pattern>com.tcoded.lightlibs.bukkitversion</pattern>
+                            <shadedPattern>${project.groupId}.bukkitversion</shadedPattern>
                         </relocation>
                         <relocation>
                             <pattern>me.nahu.scheduler</pattern>
