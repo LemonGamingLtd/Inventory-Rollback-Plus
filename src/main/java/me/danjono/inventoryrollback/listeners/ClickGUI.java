@@ -14,7 +14,6 @@ import me.danjono.inventoryrollback.gui.Buttons;
 import me.danjono.inventoryrollback.gui.InventoryName;
 import me.danjono.inventoryrollback.gui.menu.*;
 import me.danjono.inventoryrollback.inventory.RestoreInventory;
-import me.danjono.inventoryrollback.reflections.NBTWrapper;
 import me.nahu.scheduler.wrapper.runnable.WrappedRunnable;
 import org.bukkit.*;
 import org.bukkit.entity.Player;
