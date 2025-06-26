@@ -2,9 +2,8 @@ package com.nuclyon.technicallycoded.inventoryrollback.commands.inventoryrollbac
 
 import com.nuclyon.technicallycoded.inventoryrollback.InventoryRollbackPlus;
 import com.nuclyon.technicallycoded.inventoryrollback.commands.IRPCommand;
-import com.nuclyon.technicallycoded.inventoryrollback.util.BackupConversionUtil;
+import com.nuclyon.technicallycoded.inventoryrollback.util.LegacyBackupConversionUtil;
 import me.danjono.inventoryrollback.config.MessageData;
-import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
@@ -40,7 +39,7 @@ public class ImportSubCmd extends IRPCommand {
             }
 
             // Execute import
-            this.main.getScheduler().runTaskAsynchronously(BackupConversionUtil::convertOldBackupData);
+            this.main.getScheduler().runTaskAsynchronously(LegacyBackupConversionUtil::convertOldBackupData);
 
             // Reset suggestion to not visible
             suggestConfirm.set(false);
