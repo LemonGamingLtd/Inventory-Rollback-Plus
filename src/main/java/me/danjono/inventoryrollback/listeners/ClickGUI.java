@@ -294,7 +294,7 @@ public class ClickGUI implements Listener {
                     return;
                 }
 
-                main.getScheduler().runTaskAsynchronously(InventoryRollback.getInstance(), () -> {
+                main.getScheduler().runTaskAsynchronously(() -> {
                     // Unsupported on older versions
                     if (main.getVersion().lessThan(MCVersion.v1_11.toBukkitVersion())) {
                         return;
@@ -361,7 +361,7 @@ public class ClickGUI implements Listener {
                         }
                     }
 
-                    main.getScheduler().runTaskAtEntity(staff, t -> {
+                    main.getScheduler().runTaskAtEntity(staff, () -> {
                         staff.getInventory().addItem(firstShulker, secondShulker);
                         staff.closeInventory();
                     });
